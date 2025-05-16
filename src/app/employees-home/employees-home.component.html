@@ -1,0 +1,14 @@
+<h1 class="title-center">{{'EMPLOYEES_TITLE' | translate}}</h1>
+<div class="employee-section">
+    <form [formGroup]="employeeFormGroup" class="form">
+        <div class="form-control">
+            <input type="text" [placeholder]="'EMPLOYEES_PLACEHOLDER' | translate" formControlName="name"/>
+        </div>
+        <button (click)="onSubmit()">{{'SUBMIT' | translate}}</button>
+    </form>
+    <div class="employees">
+        <ul>
+            <li *ngFor="let employee of employeesList">{{employee.name}}</li>
+        </ul>
+    </div>
+</div>
