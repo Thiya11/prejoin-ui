@@ -1,7 +1,9 @@
 <header class="main-header">
   <div class="switch">
-    <button (click)="switchLang('en')" [ngClass]="currentLang == 'en' ? 'active': ''">English</button>
-    <button (click)="switchLang('jp')" [ngClass]="currentLang == 'jp' ? 'active': ''">日本語</button>
+    <div class="switch-outline">
+      <button class="en" (click)="switchLang('en')" [ngClass]="currentLang == 'en' ? 'active': ''">English</button>
+      <button (click)="switchLang('jp')" [ngClass]="currentLang == 'jp' ? 'active': ''">日本語</button>
+    </div>
   </div>
 </header>
 <router-outlet></router-outlet>

@@ -4,5 +4,8 @@
     "CLICK_HERE": "こちらをクリック",
     "SUBMIT": "送信",
     "EMPLOYEES_TITLE": "従業員",
-    "EMPLOYEES_PLACEHOLDER": "名前を入力してください"
+    "EMPLOYEES_PLACEHOLDER": "名前を入力してください",
+    "NAME_REQUIRED": "名前を入力してください",
+    "NAME_INVALID": " 名前は文字と数字とスペースだけ使えます",
+    "NAME_MAX_LENGTH":"名前は80文字以内にしてください。"
   }

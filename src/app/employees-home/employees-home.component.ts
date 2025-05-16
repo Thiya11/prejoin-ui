@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
-import { CONFIGS } from '../configs/config';
+import { EmployeeAPIService } from '../shared/services/employee-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-home',
@@ -15,7 +15,9 @@ export class EmployeesHomeComponent implements OnInit {
   public employeeFormGroup!: FormGroup;
   public employeesList!: Array<any>;
 
-  constructor(private formBuilder:FormBuilder, private httpClient:HttpClient) {}
+  constructor(private formBuilder:FormBuilder,
+              private employeeAPIService:EmployeeAPIService,
+              private router: Router) {}
 
   ngOnInit(): void {
       this.getAllEmployees();
@@ -24,31 +26,27 @@ export class EmployeesHomeComponent implements OnInit {
 
   initiateFormControls() {
     this.employeeFormGroup = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.pattern(/^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/),  Validators.maxLength(250)])
+      name: this.formBuilder.control('', [Validators.required, Validators.pattern(/^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/),  Validators.maxLength(80)])
     })
   }
 
-  getAllEmployees() {
-    this.httpClient.get(CONFIGS.API_URL + "api/employee")
-    .subscribe((employees:any) => {
-      this.employeesList = employees
-    },
-    err => {
-      console.log(err)
-    })
+  async getAllEmployees() {
+    this.employeesList = await this.employeeAPIService.getAllEmployees();
   }
 
-  onSubmit(){
+  get f() {
+    return this.employeeFormGroup as FormGroup
+  }
+
+  async onSubmit(){
     if(this.employeeFormGroup.valid) {
-      this.httpClient.post(CONFIGS.API_URL + "api/employee", this.employeeFormGroup.value)
-      .subscribe((message:any)=> {
-        console.log(message);
-        this.getAllEmployees();
-      },
-      err => {
-        console.log(err);
-      })
+      await this.employeeAPIService.addEmployee(this.employeeFormGroup.controls['name'].value);
+      this.employeesList = await this.employeeAPIService.getAllEmployees();
     }
+  }
+
+  onBack() {
+    this.router.navigate(['/']);
   }
 
 }

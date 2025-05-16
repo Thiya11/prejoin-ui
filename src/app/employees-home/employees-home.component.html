@@ -1,10 +1,22 @@
+<img src="images/back.svg" class="back-btn" alt="back" name="back" (click)="onBack()">
 <h1 class="title-center">{{'EMPLOYEES_TITLE' | translate}}</h1>
 <div class="employee-section">
     <form [formGroup]="employeeFormGroup" class="form">
         <div class="form-control">
             <input type="text" [placeholder]="'EMPLOYEES_PLACEHOLDER' | translate" formControlName="name"/>
+            <button (click)="onSubmit()">{{'SUBMIT' | translate}}</button>
         </div>
-        <button (click)="onSubmit()">{{'SUBMIT' | translate}}</button>
+        <ng-container>
+            <div class="error-text" *ngIf="f.invalid && f.controls['name'].dirty && f.controls['name'].errors && f.controls['name'].errors['pattern']">
+                {{'NAME_INVALID' | translate}}
+            </div>
+            <div class="error-text"  *ngIf="f.invalid && f.controls['name'].dirty && f.controls['name'].errors && f.controls['name'].errors['required']">
+               {{'NAME_REQUIRED' | translate}}
+            </div>
+            <div class="error-text" *ngIf="f.invalid && f.controls['name'].dirty && f.controls['name'].errors && f.controls['name'].errors['maxlength']">
+                {{'NAME_MAX_LENGTH' | translate}}
+            </div>
+        </ng-container>
     </form>
     <div class="employees">
         <ul>

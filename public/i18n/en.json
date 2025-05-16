@@ -4,5 +4,8 @@
     "CLICK_HERE": "Click Here",
     "SUBMIT":"Submit",
     "EMPLOYEES_TITLE":"Employees",
-    "EMPLOYEES_PLACEHOLDER":"Enter Your Name"
+    "EMPLOYEES_PLACEHOLDER":"Enter Your Name",
+    "NAME_REQUIRED": "Name is required.",
+    "NAME_INVALID": "Invalid name pattern(only numbers, characters and space allowed).",
+    "NAME_MAX_LENGTH":"Name should not exceed 80 characters."
 }
