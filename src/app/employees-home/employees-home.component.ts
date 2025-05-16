@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular
 import { TranslatePipe } from '@ngx-translate/core';
 import { EmployeeAPIService } from '../shared/services/employee-api.service';
 import { Router } from '@angular/router';
+import { NAME_PATTERN_WITH_JAPANESE } from '../shared/configs/general-configs';
 
 @Component({
   selector: 'app-employees-home',
@@ -26,7 +27,7 @@ export class EmployeesHomeComponent implements OnInit {
 
   initiateFormControls() {
     this.employeeFormGroup = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.pattern(/^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/),  Validators.maxLength(80)])
+      name: this.formBuilder.control('', [Validators.required, Validators.pattern(NAME_PATTERN_WITH_JAPANESE),  Validators.maxLength(80)])
     })
   }
 

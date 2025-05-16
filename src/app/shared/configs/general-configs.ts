@@ -1,0 +1,1 @@
+export const NAME_PATTERN_WITH_JAPANESE = /^[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}a-zA-Z0-9ー\s]+$/u;
