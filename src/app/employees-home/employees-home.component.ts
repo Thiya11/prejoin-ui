@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CONFIGS } from '../configs/config';
 
 @Component({
   selector: 'app-employees-home',
@@ -28,7 +29,7 @@ export class EmployeesHomeComponent implements OnInit {
   }
 
   getAllEmployees() {
-    this.httpClient.get("http://localhost:8080/api/employee")
+    this.httpClient.get(CONFIGS.API_URL + "api/employee")
     .subscribe((employees:any) => {
       this.employeesList = employees
     },
@@ -39,7 +40,7 @@ export class EmployeesHomeComponent implements OnInit {
 
   onSubmit(){
     if(this.employeeFormGroup.valid) {
-      this.httpClient.post("http://localhost:8080/api/employee", this.employeeFormGroup.value)
+      this.httpClient.post(CONFIGS.API_URL + "api/employee", this.employeeFormGroup.value)
       .subscribe((message:any)=> {
         console.log(message);
         this.getAllEmployees();
