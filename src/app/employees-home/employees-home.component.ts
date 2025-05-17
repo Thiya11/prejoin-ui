@@ -43,6 +43,8 @@ export class EmployeesHomeComponent implements OnInit {
     if(this.employeeFormGroup.valid) {
       await this.employeeAPIService.addEmployee(this.employeeFormGroup.controls['name'].value);
       this.employeesList = await this.employeeAPIService.getAllEmployees();
+    } else {
+      this.employeeFormGroup.controls['name'].markAsDirty();
     }
   }
 
