@@ -2,6 +2,13 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
 
+## Linked Repo
+
+This repo is the front-end portion of the project **Prejoin**. Consider the backend repo [Prejoin Backend](https://github.com/Thiya11/prejoin) for the full effect.
+
+## LIVE DEMO URL: 
+Check the live demo [CHECK HERE](https://prejoin-ui.vercel.app).
+
 ## Development server
 
 To start a local development server, run:
